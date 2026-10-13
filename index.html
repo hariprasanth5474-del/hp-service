@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101b2d" />
+  <title>HP Service | Bike Service Billing</title>
+  <style>
+    :root{--navy:#101b2d;--navy2:#17263c;--orange:#f47735;--ink:#192638;--muted:#718096;--line:#e7ebf0;--paper:#fff;--bg:#f3f5f8;--green:#17966a}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px}button,input,select,textarea{font:inherit}button{cursor:pointer}
+    .app{min-height:100vh}.topbar{height:72px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 max(calc((100vw - 1240px)/2),28px);box-shadow:0 4px 16px #101b2d20}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:42px;height:42px;border-radius:12px;background:var(--orange);display:grid;place-items:center;color:#fff;font-size:17px;font-weight:900;letter-spacing:-1px}.brand-name{font-weight:800;font-size:17px;letter-spacing:.2px}.brand-sub{font-size:11px;color:#b8c3d2;margin-top:2px;letter-spacing:1.5px;text-transform:uppercase}.top-actions{display:flex;align-items:center;gap:10px}.top-date{color:#bac4d2;font-size:13px;margin-right:10px}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:10px 14px;font-weight:650;display:inline-flex;align-items:center;gap:8px;transition:.15s}.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px #16223612}.btn-primary{background:var(--orange);border-color:var(--orange);color:#fff}.btn-dark{background:var(--navy2);border-color:var(--navy2);color:white}.btn-quiet{background:transparent;border-color:#ffffff35;color:#fff}.btn svg{width:16px;height:16px}
+    main{max-width:1240px;margin:34px auto;padding:0 28px 48px}.page-heading{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:22px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.7px;font-weight:750;color:var(--orange);margin-bottom:7px}.page-heading h1{font-size:28px;letter-spacing:-.7px;margin:0 0 6px}.page-heading p{margin:0;color:var(--muted);font-size:14px}.invoice-no{color:var(--muted);font-size:12px;text-align:right}.invoice-no strong{display:block;color:var(--ink);font-size:16px;margin-top:4px}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:20px;align-items:start}.left-col{display:grid;gap:18px}.card{background:var(--paper);border:1px solid #e9edf2;border-radius:12px;box-shadow:0 3px 14px #14243a06}.card-head{padding:18px 22px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.card-head h2{font-size:15px;margin:0;letter-spacing:-.1px}.step{display:flex;align-items:center;gap:10px}.step-num{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#fff0e8;color:var(--orange);font-size:12px;font-weight:800}.card-body{padding:20px 22px}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px}.field-grid.vehicle{grid-template-columns:1.25fr 1fr 1fr 1fr}.field{min-width:0}.field label{display:block;font-size:11px;color:#69788d;font-weight:700;margin-bottom:7px;letter-spacing:.45px;text-transform:uppercase}.field input,.field select,.field textarea{width:100%;border:1px solid #dce2e9;background:#fff;border-radius:7px;padding:10px 11px;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s}.field input::placeholder,.field textarea::placeholder{color:#a6b0bd}.field input:focus,.field select:focus,.field textarea:focus{border-color:#f6a276;box-shadow:0 0 0 3px #f4773518}.field textarea{resize:vertical;min-height:70px}.field .prefix{position:relative}.field .prefix span{position:absolute;left:11px;top:10px;color:#8a96a5}.field .prefix input{padding-left:28px}
+    .items-card .card-head{padding-bottom:16px}.item-table-wrap{overflow-x:auto}.item-table{width:100%;border-collapse:collapse;min-width:640px}.item-table th{text-align:left;background:#f8f9fb;color:#748197;font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:11px 12px;font-weight:750}.item-table td{padding:10px 12px;border-bottom:1px solid #edf0f3}.item-table th:first-child,.item-table td:first-child{padding-left:22px}.item-table th:last-child,.item-table td:last-child{padding-right:22px}.item-table input{width:100%;min-width:50px;border:1px solid transparent;background:transparent;padding:7px 6px;border-radius:5px;outline:none;color:var(--ink)}.item-table input:hover{border-color:#e0e5eb}.item-table input:focus{border-color:#f5a174;background:#fff;box-shadow:0 0 0 2px #f4773512}.item-table .desc-input{min-width:190px}.item-table .qty-input,.item-table .rate-input{max-width:100px}.item-table .amount{white-space:nowrap;font-weight:700;text-align:right}.item-table th:nth-child(2),.item-table th:nth-child(3),.item-table th:nth-child(4){text-align:center}.item-table td:nth-child(2),.item-table td:nth-child(3){text-align:center}.item-table th:nth-child(5){text-align:right}.remove-row{border:0;background:transparent;color:#a5afbc;font-size:20px;line-height:1;padding:4px 6px;border-radius:5px}.remove-row:hover{background:#fff0ee;color:#db554a}.table-foot{padding:14px 22px}.add-row{border:0;background:none;padding:4px 0;color:var(--orange);font-weight:700;display:flex;align-items:center;gap:7px}.add-row span{font-size:19px;line-height:15px}
+    .side{position:sticky;top:20px;display:grid;gap:16px}.summary{padding:21px}.summary-title{font-size:15px;font-weight:750;margin:0 0 19px}.summary-line{display:flex;justify-content:space-between;align-items:center;color:#69788d;margin:13px 0}.summary-line strong{color:var(--ink);font-weight:650}.summary-line.discount-line{align-items:center}.discount-control{display:flex;align-items:center;gap:6px}.discount-control input{width:57px;border:1px solid #dce2e9;border-radius:6px;padding:6px;text-align:right;outline:none}.discount-control select{border:1px solid #dce2e9;border-radius:6px;padding:6px;color:#536174;background:#fff;outline:none}.summary-divider{border:0;border-top:1px solid var(--line);margin:17px 0}.grand-total{display:flex;align-items:flex-end;justify-content:space-between;margin:18px 0 6px}.grand-total span{font-size:13px;font-weight:750}.grand-total strong{font-size:27px;letter-spacing:-.8px;color:var(--navy)}.tax-note{font-size:11px;color:#8a96a5;line-height:1.5}.payment{padding:18px 20px}.payment h3{font-size:14px;margin:0 0 14px}.pay-options{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.pay-option input{position:absolute;opacity:0;pointer-events:none}.pay-option span{height:38px;border:1px solid #e1e6ed;border-radius:7px;display:grid;place-items:center;color:#69788d;font-size:12px;font-weight:650;cursor:pointer}.pay-option input:checked+span{border-color:#f47735;background:#fff6f1;color:#d96024}.notes-card{padding:18px 20px}.notes-card label{display:block;font-size:12px;font-weight:700;margin-bottom:8px}.notes-card textarea{width:100%;border:1px solid #dce2e9;border-radius:7px;padding:10px;resize:vertical;min-height:72px;outline:none}.notes-card textarea:focus{border-color:#f6a276;box-shadow:0 0 0 3px #f4773518}.side-actions{display:grid;gap:9px}.side-actions .btn{justify-content:center;padding:12px}.status{font-size:11px;color:var(--green);text-align:center;min-height:14px}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,18px);background:var(--navy);color:#fff;padding:11px 16px;border-radius:9px;box-shadow:0 8px 25px #101b2d33;opacity:0;pointer-events:none;transition:.2s;z-index:5}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:900px){.layout{grid-template-columns:minmax(0,1fr) 290px}.field-grid.vehicle{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:680px){.topbar{padding:0 16px;height:64px}.top-date{display:none}.top-actions .btn-quiet{display:none}main{margin:24px auto;padding:0 14px 32px}.page-heading{align-items:flex-start;gap:10px}.page-heading h1{font-size:24px}.invoice-no{font-size:10px}.invoice-no strong{font-size:13px}.layout{grid-template-columns:1fr}.side{position:static;grid-row:1}.left-col{grid-row:2}.card-head,.card-body{padding-left:16px;padding-right:16px}.item-table th:first-child,.item-table td:first-child{padding-left:16px}.item-table th:last-child,.item-table td:last-child{padding-right:16px}.table-foot{padding-left:16px}.summary{padding:18px}.field-grid{gap:14px 12px}.field-grid.vehicle{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:390px){.brand-sub{font-size:9px}.brand-name{font-size:15px}.top-actions .btn{padding:9px 10px}.field-grid{grid-template-columns:1fr}.field-grid.vehicle{grid-template-columns:1fr 1fr}}
+    @media print{body{background:#fff}.topbar,.page-heading,.side-actions,.add-row,.remove-row,.status{display:none!important}main{max-width:none;margin:0;padding:0}.layout{display:block}.left-col{gap:10px}.card{box-shadow:none;border:1px solid #d9dee5;break-inside:avoid}.side{position:static;display:grid;grid-template-columns:1fr 1fr;margin-top:10px}.notes-card{display:none}.card-head{padding:12px 16px}.card-body{padding:13px 16px}.item-table th,.item-table td{padding:7px 9px}.item-table input{border:0;padding:4px}.item-table input:focus{box-shadow:none}.summary,.payment{padding:14px 16px}.summary-title{margin-bottom:10px}.summary-line{margin:8px 0}.grand-total{margin:10px 0 4px}.pay-options{grid-template-columns:repeat(3,1fr)}.pay-option span{border-color:transparent;padding:0}.item-table-wrap{overflow:visible}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">HP</div><div><div class="brand-name">HP Service</div><div class="brand-sub">Bike Care &amp; Repairs</div></div></div>
+      <div class="top-actions"><span class="top-date" id="todayLabel"></span><button class="btn btn-quiet" type="button" id="newBillBtn">＋ New bill</button><button class="btn btn-primary" type="button" id="printTop">⇧ &nbsp;Print bill</button></div>
+    </header>
+    <main>
+      <div class="page-heading"><div><div class="eyebrow">Service desk</div><h1>Create service bill</h1><p>Record the work, add parts and prepare a customer invoice.</p></div><div class="invoice-no">INVOICE NUMBER<strong id="invoiceNumber"></strong></div></div>
+      <div class="layout">
+        <div class="left-col">
+          <section class="card">
+            <div class="card-head"><div class="step"><span class="step-num">1</span><h2>Customer details</h2></div></div>
+            <div class="card-body"><div class="field-grid">
+              <div class="field"><label for="customerName">Customer name</label><input id="customerName" placeholder="e.g. Arun Kumar" autocomplete="name" /></div>
+              <div class="field"><label for="phone">Phone number</label><input id="phone" placeholder="10-digit mobile number" inputmode="tel" autocomplete="tel" /></div>
+              <div class="field"><label for="billDate">Bill date</label><input id="billDate" type="date" /></div>
+              <div class="field"><label for="mechanic">Serviced by</label><input id="mechanic" placeholder="Mechanic name (optional)" /></div>
+            </div></div>
+          </section>
+          <section class="card">
+            <div class="card-head"><div class="step"><span class="step-num">2</span><h2>Bike details</h2></div></div>
+            <div class="card-body"><div class="field-grid vehicle">
+              <div class="field"><label for="bikeModel">Make &amp; model</label><input id="bikeModel" placeholder="e.g. Honda Activa" /></div>
+              <div class="field"><label for="registration">Registration no.</label><input id="registration" placeholder="TN 00 AB 1234" /></div>
+              <div class="field"><label for="odometer">Odometer</label><div class="prefix"><span>km</span><input id="odometer" inputmode="numeric" placeholder="e.g. 12,500" /></div></div>
+              <div class="field"><label for="jobType">Job type</label><select id="jobType"><option>General service</option><option>Oil change</option><option>Repair</option><option>Inspection</option><option>Other</option></select></div>
+            </div></div>
+          </section>
+          <section class="card items-card">
+            <div class="card-head"><div class="step"><span class="step-num">3</span><h2>Services &amp; parts</h2></div><span style="font-size:11px;color:#8793a3">Enter unit price in ₹</span></div>
+            <div class="item-table-wrap"><table class="item-table"><thead><tr><th style="width:48%">Description</th><th style="width:12%">Qty</th><th style="width:17%">Rate (₹)</th><th style="width:18%">Amount</th><th style="width:5%"></th></tr></thead><tbody id="itemsBody"></tbody></table></div>
+            <div class="table-foot"><button class="add-row" id="addRow" type="button"><span>＋</span> Add service or part</button></div>
+          </section>
+        </div>
+        <aside class="side">
+          <section class="card summary">
+            <h2 class="summary-title">Bill summary</h2>
+            <div class="summary-line"><span>Subtotal</span><strong id="subtotal">₹0.00</strong></div>
+            <div class="summary-line discount-line"><span>Discount</span><div class="discount-control"><input id="discount" type="number" min="0" value="0" aria-label="Discount amount" /><select id="discountType" aria-label="Discount type"><option value="amount">₹</option><option value="percent">%</option></select></div></div>
+            <div class="summary-line"><span>Tax (GST)</span><div class="discount-control"><input id="taxRate" type="number" min="0" max="100" value="0" aria-label="GST rate" /><span style="color:#69788d">%</span></div></div>
+            <div class="summary-line"><span>Tax amount</span><strong id="taxAmount">₹0.00</strong></div>
+            <hr class="summary-divider" />
+            <div class="grand-total"><span>Total due</span><strong id="grandTotal">₹0.00</strong></div>
+            <div class="tax-note">Tax is calculated on the amount after discount.</div>
+          </section>
+          <section class="card payment"><h3>Payment method</h3><div class="pay-options">
+            <label class="pay-option"><input type="radio" name="payment" value="Cash" checked /><span>Cash</span></label>
+            <label class="pay-option"><input type="radio" name="payment" value="UPI" /><span>UPI</span></label>
+            <label class="pay-option"><input type="radio" name="payment" value="Card" /><span>Card</span></label>
+          </div></section>
+          <section class="card notes-card"><label for="notes">Notes for customer</label><textarea id="notes" placeholder="Next service reminder, warranty details…"></textarea></section>
+          <div class="side-actions"><button class="btn btn-primary" type="button" id="printBill">⇧ &nbsp;Print / Save as PDF</button><button class="btn btn-dark" type="button" id="saveBill">✓ &nbsp;Save bill</button><div class="status" id="saveStatus" aria-live="polite"></div></div>
+        </aside>
+      </div>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script>
+    (()=>{
+      const $=id=>document.getElementById(id), currency=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR'});
+      const now=new Date(), localDate=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);
+      $('todayLabel').textContent=now.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});$('billDate').value=localDate;
+      const dateCode=localDate.replaceAll('-','');let billSequence=Number(localStorage.getItem('hpServiceSequence')||0)+1;
+      function setInvoice(){ $('invoiceNumber').textContent=`HP-${dateCode}-${String(billSequence).padStart(3,'0')}`; }
+      setInvoice();
+      const initial=[['General service labour',1,450],['Engine oil',1,350],['Oil filter',1,120]];
+      function addRow(description='',qty=1,rate=0){
+        const tr=document.createElement('tr');
+        tr.innerHTML=`<td><input class="desc-input" aria-label="Item description" placeholder="Service or part name" value=""></td><td><input class="qty-input" aria-label="Quantity" type="number" min="0" step="1" value=""></td><td><input class="rate-input" aria-label="Rate in rupees" type="number" min="0" step="0.01" value=""></td><td class="amount">₹0.00</td><td><button class="remove-row" type="button" aria-label="Remove item">×</button></td>`;
+        tr.querySelector('.desc-input').value=description;tr.querySelector('.qty-input').value=qty;tr.querySelector('.rate-input').value=rate;
+        tr.querySelectorAll('input').forEach(input=>input.addEventListener('input',calculate));tr.querySelector('.remove-row').addEventListener('click',()=>{tr.remove();calculate()});$('itemsBody').appendChild(tr);calculate();
+      }
+      initial.forEach(row=>addRow(...row));
+      function num(el){return Math.max(0,Number(el.value)||0)}
+      function calculate(){
+        let subtotal=0;document.querySelectorAll('#itemsBody tr').forEach(tr=>{const amount=num(tr.querySelector('.qty-input'))*num(tr.querySelector('.rate-input'));subtotal+=amount;tr.querySelector('.amount').textContent=currency.format(amount)});
+        const rawDiscount=num($('discount'));const discount=$('discountType').value==='percent'?subtotal*Math.min(rawDiscount,100)/100:Math.min(rawDiscount,subtotal);const taxable=Math.max(0,subtotal-discount);const tax=taxable*Math.min(num($('taxRate')),100)/100;
+        $('subtotal').textContent=currency.format(subtotal);$('taxAmount').textContent=currency.format(tax);$('grandTotal').textContent=currency.format(taxable+tax);
+      }
+      ['discount','discountType','taxRate'].forEach(id=>$(id).addEventListener('input',calculate));$('discountType').addEventListener('change',calculate);$('addRow').addEventListener('click',()=>addRow('',1,0));
+      const formFields=['customerName','phone','billDate','mechanic','bikeModel','registration','odometer','jobType','discount','discountType','taxRate','notes'];
+      function getBill(){return {invoice:$('invoiceNumber').textContent,items:[...document.querySelectorAll('#itemsBody tr')].map(tr=>({description:tr.querySelector('.desc-input').value,quantity:num(tr.querySelector('.qty-input')),rate:num(tr.querySelector('.rate-input'))})),fields:Object.fromEntries(formFields.map(id=>[id,$(id).value])),payment:document.querySelector('input[name="payment"]:checked').value,total:$('grandTotal').textContent,savedAt:new Date().toISOString()}}
+      function toast(message){$('toast').textContent=message;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2600)}
+      $('saveBill').addEventListener('click',()=>{const bill=getBill();const bills=JSON.parse(localStorage.getItem('hpServiceBills')||'[]');bills.push(bill);localStorage.setItem('hpServiceBills',JSON.stringify(bills));localStorage.setItem('hpServiceSequence',String(billSequence));$('saveStatus').textContent='Bill saved in this browser';toast('Bill saved successfully')});
+      const print=()=>window.print();$('printBill').addEventListener('click',print);$('printTop').addEventListener('click',print);
+      $('newBillBtn').addEventListener('click',()=>{if(!confirm('Start a new bill? Unsaved changes will be cleared.'))return;formFields.forEach(id=>{if(id==='billDate')$(id).value=localDate;else if(id==='jobType')$(id).selectedIndex=0;else if(id==='discount'||id==='taxRate')$(id).value='0';else if(id==='discountType')$(id).value='amount';else $(id).value=''});document.querySelector('input[name="payment"][value="Cash"]').checked=true;$('itemsBody').innerHTML='';initial.forEach(row=>addRow(...row));billSequence++;setInvoice();$('saveStatus').textContent='';toast('New bill ready')});
+    })();
+  </script>
+</body>
+</html>
